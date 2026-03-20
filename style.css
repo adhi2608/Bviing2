@@ -1,0 +1,418 @@
+/* =========================================
+   1. Base Variables & Reset
+   ========================================= */
+:root {
+    --primary-orange: #E66C15; /* Sourced from your logo */
+    --black: #050505;
+    --dark-grey: #1a1a1a;
+    --light-grey: #f4f4f4;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    color: var(--black);
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevents horizontal scrolling from animations */
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 0;
+}
+
+h1, h2, h3 {
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-orange);
+}
+
+ul {
+    list-style: none;
+}
+
+/* =========================================
+   2. Navigation
+   ========================================= */
+nav {
+    background-color: var(--black);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--white);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--primary-orange);
+}
+
+.btn-nav {
+    background-color: var(--primary-orange);
+    padding: 10px 20px;
+    color: var(--black) !important;
+    border-radius: 4px;
+}
+
+.btn-nav:hover {
+    background-color: var(--white);
+}
+
+/* =========================================
+   3. Hero Section & Animations
+   ========================================= */
+#hero {
+    background-color: var(--primary-orange);
+    color: var(--black);
+    padding: 100px 0;
+    text-align: center;
+}
+
+#hero h1 {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    opacity: 0; 
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 0.2s;
+}
+
+#hero .highlight {
+    color: var(--white);
+}
+
+#hero p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    font-weight: 700;
+    opacity: 0; 
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 0.4s;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--black);
+    color: var(--white);
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 4px;
+    transition: all 0.3s;
+    opacity: 0;
+    /* Combines the fade-in and the infinite pulse */
+    animation: fadeInUp 0.8s ease-out forwards 0.6s, pulse 2s infinite 1.4s;
+}
+
+.btn:hover {
+    background-color: var(--white);
+    color: var(--black);
+    animation: none; /* Stops pulsing on hover */
+    transform: scale(1.05);
+}
+
+/* =========================================
+   4. About Grid
+   ========================================= */
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.about-card {
+    background: var(--light-grey);
+    padding: 40px;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-card.bg-orange {
+    background: var(--primary-orange);
+    color: var(--white);
+}
+
+.about-card h3 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.about-card ul li {
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+/* =========================================
+   5. Services Grid
+   ========================================= */
+.bg-light {
+    background-color: var(--light-grey);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border-top: 5px solid var(--primary-orange);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.service-card p {
+    margin-bottom: 20px;
+    font-style: italic;
+    color: #555;
+}
+
+.service-card ul li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.service-card ul li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--primary-orange);
+    font-weight: bold;
+}
+
+/* =========================================
+   6. Pricing Grid (Flexbox setup for 2 cards)
+   ========================================= */
+.pricing-grid {
+    display: flex;
+    justify-content: center; /* Centers the two cards */
+    flex-wrap: wrap; /* Keeps them responsive on mobile */
+    gap: 60px; /* The gap between the two cards */
+    margin-bottom: 40px;
+}
+
+.price-card {
+    border: 2px solid var(--light-grey);
+    padding: 40px;
+    border-radius: 8px;
+    text-align: center;
+    width: 100%;
+    max-width: 400px; /* Prevents them from stretching too wide */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Card Hover Lift Effect */
+.about-card:hover, .service-card:hover, .price-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.price-card.popular {
+    border-color: var(--primary-orange);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.price-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--primary-orange);
+    margin-bottom: 20px;
+}
+
+.price span {
+    font-size: 1rem;
+    color: var(--black);
+}
+
+.price-card ul li {
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--light-grey);
+    padding-bottom: 15px;
+}
+
+.custom-plan {
+    text-align: center;
+    background: var(--dark-grey);
+    color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+/* =========================================
+   7. Footer
+   ========================================= */
+footer {
+    background-color: var(--black);
+    color: var(--white);
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    padding-bottom: 30px;
+}
+
+.footer-info h2 {
+    text-align: left;
+    color: var(--primary-orange);
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.footer-info p {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.footer-policy {
+    background: var(--dark-grey);
+    padding: 30px;
+    border-radius: 8px;
+    border-left: 5px solid var(--primary-orange);
+}
+
+.copyright {
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid #333;
+    background: #000;
+}
+
+/* =========================================
+   8. Keyframe Animations
+   ========================================= */
+@keyframes fadeInUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(30px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(230, 108, 21, 0.7); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(230, 108, 21, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(230, 108, 21, 0); }
+}
+
+/* =========================================
+   9. Mobile Responsive Media Query & Menu
+   ========================================= */
+/* Hamburger Icon Styles (Hidden on Desktop) */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    z-index: 101; /* Keeps it above the sliding menu */
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--white);
+    transition: all 0.3s ease;
+}
+
+/* Mobile Screen Rules */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex; /* Shows hamburger on mobile */
+    }
+
+    /* The Dropdown Menu */
+    .nav-links {
+        position: absolute;
+        top: 80px; /* Sits right below the black nav bar */
+        left: -100%; /* Hides the menu off the left side of the screen */
+        flex-direction: column;
+        background-color: var(--black);
+        width: 100%;
+        text-align: center;
+        padding: 20px 0;
+        transition: left 0.3s ease; /* Creates the smooth slide-in effect */
+        box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+    }
+
+    /* This class is added by JavaScript to show the menu */
+    .nav-links.active {
+        left: 0; 
+    }
+
+    .nav-links li {
+        margin: 15px 0;
+    }
+
+    /* Other Mobile Adjustments */
+    #hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .pricing-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+    }
+}
